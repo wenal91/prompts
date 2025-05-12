@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Prompt Sage API
+  version: 1.0.0
+  description: >
+    Prompt Sage is a decision-thinking engine trained to analyze complex, ambiguous, and emotionally sensitive situations. 
+    It decomposes problems, maps strategic options, simulates stakeholder reactions, and generates graceful exit scripts.
+
+servers:
+  - url: https://api.promptsage.local
+    description: Internal prompt reasoning simulator (no live server)
+
+paths:
+  /analyze-situation:
+    post:
+      operationId: analyzeSituation
+      summary: Decompose and reason through a high-stakes personal/professional dilemma.
+      description: >
+        Accepts a description of a complex situation and returns a structured breakdown:
+        stakeholders, stakes, ethical tensions, time constraints, strategic options, simulations, and recommended communication scripts.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - situation
+              properties:
+                situation:
+                  type: string
+                  description: >
+                    A natural-language description of a personal or professional dilemma requiring sensitive decision-making.
+                tonePreference:
+                  type: string
+                  description: >
+                    Optional. Preferred tone for the recommended script (e.g., professional, kind, direct, regretful, neutral).
+                simulateVoices:
+                  type: boolean
+                  default: true
+                  description: >
+                    Whether to simulate reactions from conscience, pragmatist, and social perception.
+      responses:
+        '200':
+          description: Structured breakdown and communication scripts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  breakdown:
+                    type: object
+                    properties:
+                      stakeholders:
+                        type: array
+                        items: { type: string }
+                      stakes:
+                        type: array
+                        items: { type: string }
+                      ethicalTensions:
+                        type: array
+                        items: { type: string }
+                      timeConstraints:
+                        type: string
+                      dominantValues:
+                        type: array
+                        items: { type: string }
+                  options:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          type: string
+                        pros:
+                          type: array
+                          items: { type: string }
+                        cons:
+                          type: array
+                          items: { type: string }
+                        likelyReaction:
+                          type: string
+                  voiceSimulation:
+                    type: object
+                    properties:
+                      conscience:
+                        type: string
+                      pragmatist:
+                        type: string
+                      socialMirror:
+                        type: string
+                  suggestedScripts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        tone:
+                          type: string
+                        script:
+                          type: string
+                  finalRecommendation:
+                    type: string
+                    description: >
+                      Synthesis of all reasoning: the cleanest, most thoughtful action with tone guidance and decision clarity.
