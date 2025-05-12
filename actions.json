@@ -1,0 +1,11 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Prompt Sage",
+  "name_for_model": "promptSage",
+  "description_for_human": "Strategic decision assistant for messy, high-stakes situations.",
+  "description_for_model": "Helps users think through personal or professional dilemmas by analyzing stakeholders, tradeoffs, and clean communication paths.",
+  "api": {
+    "type": "openapi",
+    "url": "https://raw.githubusercontent.com/wenal91/prompts/main/promptSage.yaml"
+  }
+}
